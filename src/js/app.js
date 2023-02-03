@@ -84,3 +84,4 @@ function inputDecimal() {
 function clear() {
   displayValue = "0";
 }
+//////////
