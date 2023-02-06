@@ -7,11 +7,16 @@ let displayValue = "0";
 let firstValue = null;
 let operator = null;
 let waitingForSecondValue = false;
+let isOpened = false;
 
 updateDisplay();
 
 function updateDisplay() {
-  display.value = displayValue;
+  if (isOpened) {
+    display.value = displayValue;
+  } else {
+    display.value = "";
+  }
 }
 
 function handleOperator(nextOperator) {
@@ -44,6 +49,18 @@ function calculate(first, second, operator) {
 keys.addEventListener("click", function (e) {
   const element = e.target;
   if (!element.matches("button")) return;
+
+  if (element.classList.contains("operator-on")) {
+    isOpened = !isOpened;
+    if (!isOpened) {
+      clear();
+    }
+    updateDisplay();
+    console.log("operator", element.value);
+    return;
+  }
+
+  if (!isOpened) return;
 
   if (element.classList.contains("operator")) {
     handleOperator(element.value);
@@ -83,5 +100,7 @@ function inputDecimal() {
 }
 function clear() {
   displayValue = "0";
+  firstValue = null;
+  operator = null;
+  waitingForSecondValue = false;
 }
-//////////
