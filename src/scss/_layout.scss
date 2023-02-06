@@ -96,3 +96,11 @@ button {
   width: 100%;
   border-radius: 37px;
 }
+
+.active {
+  transition: 0.2s ease-in-out;
+}
+
+.active:focus {
+  scale: 0.9;
+}
